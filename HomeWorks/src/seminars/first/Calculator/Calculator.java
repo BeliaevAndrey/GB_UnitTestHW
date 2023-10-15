@@ -1,6 +1,44 @@
 package seminars.first.Calculator;
 
+import java.util.Scanner;
+
 public class Calculator {
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+//        int firstOperand = getOperand();
+//        int secondOperand = getOperand();
+//        char operator = getOperator();
+//        int result = calculation(firstOperand, secondOperand, operator);
+//        System.out.println("Operation result is: " + result);
+
+//        System.out.println(calculatingDiscount(-100, 25));
+
+    }
+
+    public static char getOperator() {
+        System.out.println("Enter operation: ");
+        char operation = scanner.next().charAt(0);
+        return operation;
+    }
+
+    public static int getOperand() {
+        System.out.println("Enter operand: ");
+        int operand;
+        if (scanner.hasNextInt()) {
+            operand = scanner.nextInt();
+        } else {
+            System.out.println("You have mistaken, try again");
+            if (scanner.hasNext()) {
+                scanner.next();
+                operand = getOperand();
+            } else {
+                throw new IllegalStateException("Input error");
+            }
+        }
+        return operand;
+    }
+
     public static int calculation(int firstOperand, int secondOperand, char operator) {
         int result;
 
@@ -27,30 +65,55 @@ public class Calculator {
         return result;
     }
 
-    // HW1.1: Придумайте и опишите (можно в псевдокоде) функцию извлечения корня и
-    // необходимые проверки для него используя граничные случаи
-    public static double squareRootExtraction(double num) {
-        //  0
-        //  Отрицательные числа
-        //  Дробные значения корней
-        //  Целые
-            if(num < 0) {
-                throw new IllegalArgumentException("Cannot calculate square root of a negative number");
-            }
-            return Math.sqrt(num);
+    public static double squareRootExtraction(double number) {
+        double t;
+        double squareRoot = number / 2;
+        do {
+            t = squareRoot;
+            squareRoot = (t + (number / t)) / 2;
+        }
+        while ((t - squareRoot) != 0);
+        return squareRoot;
     }
 
-    // Нужно написать в калькуляторе метод вычисления суммы покупки со скидкой и проверить его, используя AssertJ
-    // Примерная сигнатура и тело метода:
+    /**
+     * Дз 1
+     * Нужно написать в калькуляторе метод вычисления суммы покупки со скидкой и проверить его, используя AssertJ
+     * Примерная сигнатура и тело метода:
+     *
+     * @param purchaseAmount сумма покупки
+     * @param discountAmount размер скидки
+     * @return результат
+     */
+
     public static double calculatingDiscount(double purchaseAmount, int discountAmount) {
-        // purchaseAmount - сумма покупки
-        // discountAmount - размер скидки
+        double discountedAmount = 0;
 
-        if (discountAmount < 0 || discountAmount > 100)
-            throw new ArithmeticException("Discount cannot be greater than 100 percent or lesser than 0.");
-        if (purchaseAmount <= 0)
-            throw new ArithmeticException("Purchase amount cannot be lesser or equal to 0");
+        if (purchaseAmount >= 0) {
 
-        return purchaseAmount - purchaseAmount * discountAmount / 100;
+            if (discountAmount >= 0 && discountAmount <= 100) {
+                discountedAmount = purchaseAmount - (purchaseAmount * discountAmount) / 100;
+            } else {
+                throw new ArithmeticException("Скидка должна быть в диапазоне от 0 до 100%");
+            }
+        } else {
+            throw new ArithmeticException("Сумма покупки не может быть отрицательной");
+        }
+
+        return discountedAmount;
+    }
+
+    /**
+     * Задание 2 лекции: Добавьте функцию возведения в степень в калькулятор и протестируйте
+     */
+    public static int pow(int value, int powValue) {
+        int result = 1;
+
+        for (int a = 1; a <= powValue; a++) {
+            if (a == 0) return 1;
+            result = result * value;
+
+        }
+        return result;
     }
 }
