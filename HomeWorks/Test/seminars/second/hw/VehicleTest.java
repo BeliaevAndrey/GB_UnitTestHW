@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 /*
     Домашнее задание к семинару №2 JUnit:
     1. Настроить новый проект:
@@ -23,15 +24,65 @@ import static org.junit.jupiter.api.Assertions.*;
 class VehicleTest {
 
     Car car;
+    Motorcycle motorcycle;
 
     @BeforeEach
     void steUp() {
         car = new Car("Dodge", "Ram", 2010);
+        motorcycle = new Motorcycle("TestMC", "Tested", 1900);
     }
 
+    /* проверка того, что экземпляр объекта Car также является экземпляром
+     транспортного средства; (instanceof) */
     @Test
     public void testCarIsInstanceOfVehicle() {
         assertTrue(car instanceof Vehicle);
     }
 
+    /* проверка того, объект Car создается с 4-мя колесами  */
+    @Test
+    public void testCarGetNumWheels() {
+        assertEquals(car.getNumWheels(), 4);
+    }
+
+    /* проверка того, объект Motorcycle создается с 2-мя колесами  */
+    @Test
+    public void testMCGetNumWheels() {
+        assertEquals(motorcycle.getNumWheels(), 2);
+    }
+
+   /* проверка того, объект Car развивает скорость 60 в режиме
+   тестового вождения (testDrive()) */
+    @Test
+    public void testCarGetSpeed() {
+        car.testDrive();
+        assertEquals(60, car.getSpeed());
+    }
+
+   /* проверка того, объект Motorcycle развивает скорость 75 в режиме
+   тестового вождения (testDrive()) */
+   @Test
+   public void testMCGetSpeed() {
+       motorcycle.testDrive();
+       assertEquals(75, motorcycle.getSpeed());
+   }
+
+   /* проверить, что в режиме парковки (сначала testDrive, потом park, т.е
+   эмуляция движения транспорта) машина останавливается (speed = 0) */
+    @Test
+    public void testCarStopsOnParkMode() {
+        car.testDrive();
+        car.park();
+        assertEquals(0, car.getSpeed());
+    }
+
+    /* проверить, что в режиме парковки (сначала testDrive, потом park  т.е
+    эмуляция движения транспорта) мотоцикл останавливается (speed = 0) */
+   @Test
+   public void testMCStopsOnParkMode() {
+       motorcycle.testDrive();
+       motorcycle.park();
+       assertEquals(0, car.getSpeed());
+
+   }
 }
