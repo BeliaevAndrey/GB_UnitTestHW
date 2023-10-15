@@ -72,6 +72,7 @@ class VehicleTest {
     @Test
     public void testCarStopsOnParkMode() {
         car.testDrive();
+        assertTrue(car.getSpeed() > 0);
         car.park();
         assertEquals(0, car.getSpeed());
     }
@@ -81,8 +82,10 @@ class VehicleTest {
    @Test
    public void testMCStopsOnParkMode() {
        motorcycle.testDrive();
+       assertTrue(motorcycle.getSpeed() > 0);
        motorcycle.park();
        assertEquals(0, car.getSpeed());
-
    }
+
+
 }
