@@ -1,4 +1,4 @@
-package seminars.third.hw;
+package seminars.third.tdd;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class TestUserRepositoryLogoutFunc {
+public class TestUserRepository {
 
     UserRepository userRepository;
     List<User> testUsers;

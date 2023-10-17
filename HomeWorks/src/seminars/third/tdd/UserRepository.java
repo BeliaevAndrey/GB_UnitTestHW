@@ -23,6 +23,10 @@ public class UserRepository {
     }
 
     // HW 3.3
+    public void logoutUser(User user) {
+        /* Stub */
+    }
+
     public void logoutAllButAdm() {
         List<User> admins = new ArrayList<>();
         data.forEach(user -> {if (user.isAdmin()) admins.add(user);});
