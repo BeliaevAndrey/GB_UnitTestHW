@@ -2,6 +2,7 @@ package seminars.third.tdd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserRepository {
 
@@ -9,8 +10,8 @@ public class UserRepository {
     List<User> data = new ArrayList<>();
 
     public void addUser(User user) {
-       if(!user.isAuthenticate) return;
-       data.add(user);
+        if (!user.isAuthenticate) return;
+        data.add(user);
     }
 
     public boolean findByName(String username) {
@@ -24,13 +25,16 @@ public class UserRepository {
 
     // HW 3.3
     public void logoutUser(User user) {
+        user.isAuthenticate = false;
         data.remove(user);
     }
 
     public void logoutAllButAdm() {
-        List<User> admins = new ArrayList<>();
-        data.forEach(user -> {if (user.isAdmin()) admins.add(user);});
-        this.data = admins;
+        List<User> users = data.stream()
+                .filter(u -> !u.isAdmin())
+                .collect(Collectors.toList());
+
+        users.forEach(this::logoutUser);
     }
 
 }
