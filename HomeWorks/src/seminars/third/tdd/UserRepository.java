@@ -30,8 +30,7 @@ public class UserRepository {
     }
 
     public void logoutAllButAdm() {
-        List<User> users = data.stream()
-                .filter(u -> !u.isAdmin())
+        List<User> users = data.stream().filter(u -> !u.isAdmin())
                 .collect(Collectors.toList());
 
         users.forEach(this::logoutUser);
