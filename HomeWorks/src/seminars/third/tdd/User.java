@@ -7,9 +7,9 @@ public class User {
     String name;
     String password;
 
-    private boolean isAdmin;
-
     boolean isAuthenticate = false;
+
+    private boolean isAdmin; // HW 3.3
 
     public User(String name, String password, boolean isAdmin) {
         this.name = name;
@@ -25,6 +25,7 @@ public class User {
         return isAuthenticate;
     }
 
+    // HW 3.3
     public boolean isAdmin() {
         return isAdmin;
     }

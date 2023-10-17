@@ -22,6 +22,7 @@ public class UserRepository {
         return false;
     }
 
+    // HW 3.3
     public void logoutAllButAdm() {
         List<User> admins = new ArrayList<>();
         data.forEach(user -> {if (user.isAdmin()) admins.add(user);});
