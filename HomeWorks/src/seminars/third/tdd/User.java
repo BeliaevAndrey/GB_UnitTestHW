@@ -7,11 +7,14 @@ public class User {
     String name;
     String password;
 
+    private boolean isAdmin = false;
+
     boolean isAuthenticate = false;
 
     public User(String name, String password, boolean isAdmin) {
         this.name = name;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     //3.6.
