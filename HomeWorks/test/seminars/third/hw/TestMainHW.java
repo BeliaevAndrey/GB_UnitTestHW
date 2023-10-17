@@ -6,6 +6,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestMainHW {
@@ -62,6 +65,30 @@ public class TestMainHW {
         assertTrue(mainHW.numberInInterval(n));
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"26, 99"})
+    void testNumbersInIntervalTrueMultipleSuccess(int start, int end) {
+        int[] testArr = new int[end - start + 1];
+
+        for (int i = 0; i < testArr.length ; i++)
+            testArr[i] = start + i;
+
+
+        assertTrue(Arrays.stream(testArr).allMatch(mainHW::numberInInterval));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"26, 99"})
+    void testNumbersInIntervalTrueMultipleFail(int start, int end) {
+        int[] testArr = new int[end - start + 1];
+
+        for (int i = 0; i < testArr.length ; i++)
+            testArr[i] = start + i;
+
+        testArr[testArr.length - 2] = 100;
+
+        assertFalse(Arrays.stream(testArr).allMatch(mainHW::numberInInterval));
+    }
 
 
 }
