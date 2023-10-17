@@ -23,6 +23,7 @@ public class UserRepository {
     }
 
     public void logoutAllButAdm() {
+
         /* Stub */
     }
 
