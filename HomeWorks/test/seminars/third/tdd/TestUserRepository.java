@@ -2,6 +2,7 @@ package seminars.third.tdd;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import seminars.third.tdd.User;
 import seminars.third.tdd.UserRepository;
 
@@ -38,6 +39,14 @@ public class TestUserRepository {
             userRepository.addUser(admin);
             testAdmins.add(admin);
         }
+    }
+
+    @Test
+    void testLogoutUser() {
+        String userName = "User2";
+        assertTrue(userRepository.findByName(userName));
+        userRepository.logoutUser(testUsers.get(1));
+        assertFalse(userRepository.findByName(userName));
     }
 
     @Test
