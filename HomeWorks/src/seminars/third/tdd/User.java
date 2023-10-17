@@ -7,7 +7,7 @@ public class User {
     String name;
     String password;
 
-    private boolean isAdmin = false;
+    private boolean isAdmin;
 
     boolean isAuthenticate = false;
 
@@ -25,4 +25,7 @@ public class User {
         return isAuthenticate;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 }

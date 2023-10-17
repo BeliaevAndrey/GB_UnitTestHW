@@ -55,6 +55,5 @@ public class TestUserRepositoryLogoutFunc {
             assertFalse(userRepository.findByName(uName + i));
             assertTrue(userRepository.findByName(aName + i));
         }
-
     }
 }

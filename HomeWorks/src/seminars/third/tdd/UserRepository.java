@@ -23,8 +23,9 @@ public class UserRepository {
     }
 
     public void logoutAllButAdm() {
-
-        /* Stub */
+        List<User> admins = new ArrayList<>();
+        data.forEach(user -> {if (user.isAdmin()) admins.add(user);});
+        this.data = admins;
     }
 
 }
