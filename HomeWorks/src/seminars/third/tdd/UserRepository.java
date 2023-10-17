@@ -24,7 +24,7 @@ public class UserRepository {
 
     // HW 3.3
     public void logoutUser(User user) {
-        /* Stub */
+        data.remove(user);
     }
 
     public void logoutAllButAdm() {
