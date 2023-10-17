@@ -2,6 +2,9 @@ package seminars.third.hw;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,11 +46,21 @@ public class TestMainHW {
         assertTrue(mainHW.evenOddNumber(0));
     }
 
-    // HW 3.2. Нужно написать метод который проверяет, попадает ли переданное
+    // HW 3.2. Нужно написать метод, который проверяет, попадает ли переданное
     // число в интервал (25;100) и возвращает true, если попадает и
     // false - если нет,
     // покрыть тестами метод на 100%
+    @ParameterizedTest
+    @ValueSource(ints = {-99, 0, 25, 100, 101})
+    void testNumberInIntervalFalse(int n) {
+        assertFalse(mainHW.numberInInterval(n));
+    }
 
+    @ParameterizedTest
+    @ValueSource(ints = {26, 99})
+    void testNumberInIntervalTrue(int n) {
+        assertTrue(mainHW.numberInInterval(n));
+    }
 
 
 
