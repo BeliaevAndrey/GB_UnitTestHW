@@ -1,4 +1,4 @@
-package seminars.fourth.httpC;
+package seminars.fourth.httpClient;
 
 public class HttpClient {
 
