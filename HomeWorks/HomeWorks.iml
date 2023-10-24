@@ -31,6 +31,8 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mockito-core-5.0.0" level="project" />
+    <orderEntry type="library" exported="" name="mockito-core-5.0.0" level="project" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="selenium-java-4.11" level="project" />
   </component>
 </module>
