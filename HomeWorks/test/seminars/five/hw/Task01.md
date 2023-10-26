@@ -102,9 +102,9 @@ class TestUnitsPhoneBookService {
 
 ```java
 public class TestIntegrationPB {
-    
+
     // Объявление необходимых объектов
-    
+
     @BeforeEach
     void setUp() {
     /*
@@ -115,7 +115,7 @@ public class TestIntegrationPB {
     Определение объекта сервиса записной книжки:
     */
     }
-    
+
     void testAddContactSuccess() {
         /*
          Вызов процедуры добавления контакта у сервиса записной книжки;
@@ -123,7 +123,7 @@ public class TestIntegrationPB {
          Проверка соответствия добавленных данных;  
          */
     }
-    
+
     void testAddContactFailContactExists() {
         /*
         Получение размера структуры данных;
@@ -132,9 +132,9 @@ public class TestIntegrationPB {
         Сверка сообщения об ошибке;
         Проверка, что размер структуры данных не изменился;
          */
-                
+
     }
-    
+
     void testAddContactFailWrongData() {
         /*
         Вызов процедуры добавления контакта у сервиса записной книжки с заведомо неверными данными 
@@ -144,7 +144,7 @@ public class TestIntegrationPB {
         Проверка, что невалидные данные не внесены в структуру данных;
          */
     }
-    
+
     void testDelContactSuccess() {
         /*
         Вызов процедуры удаления сервиса записной книжки и получение сообщения об успешном удалении;
@@ -155,7 +155,7 @@ public class TestIntegrationPB {
         Сверка сообщения об отсутствии;   
         */
     }
-    
+
     void testDelContactFailContactNotFound() {
         /*
         Вызов процедуры удаления сервиса записной книжки с заведомо отсутствующими данными 
@@ -163,7 +163,7 @@ public class TestIntegrationPB {
         Сверка сообщения об ошибке поиска;
         */
     }
-    
+
     void testEditContactSuccess() {
         /*
         Вызов процедуры редактирования контакта и получение сообщения об успешном обновлении данных;
@@ -174,22 +174,21 @@ public class TestIntegrationPB {
          */
     }
 
-    @Test
     void testEditContactFailContactNotFound() {
-        String newData = "Name1;9876543";
-        String expected = "Contact not found";
-        String actual = pbService.edit(dataAbsents, newData);
-        assertEquals(expected, actual);
-        assertNull(storage.get(newData));
+        /*
+        Вызов процедуры редактирования контакта с заведомо отсутствующими данными и получение сообщения об ошибке;
+
+        Сверка сообщения об ошибке (отсутствие контакта); 
+         */
     }
 
-    @Test
     void testEditContactFailWrongData() {
-        String newData = "Name1;9876543";
-        String expected = "Wrong new data";
-        Exception error = assertThrows(IllegalArgumentException.class,
-                () -> pbService.edit(contactRight.getName() + ";" + contactRight.getPhone(), dataWrong));
-        assertThat(error).isInstanceOf(IllegalArgumentException.class).hasMessage(expected);
-        assertNull(storage.get(newData));
+        /*
+        Вызов процедуры редактирования контакта с заведомо неверными данными и получение сообщения об ошибке;
+
+        Сверка сообщения об ошибке (невалидные новые данные);
+        Проверка, что неверные данные не попали в структуру данных вызовом получения данных у сервиса хранилища; 
+         */
     }
+}
 ```
