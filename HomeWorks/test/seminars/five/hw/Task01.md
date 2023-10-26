@@ -107,73 +107,71 @@ public class TestIntegrationPB {
     
     @BeforeEach
     void setUp() {
-        
     /*
     Определение структуры данных, которая будет замещать реальную БД;
     Определение необходимых dummies и добавление их в структуру данных.
-           
+    Определение дополнительных dummies, которые не будут добавлены в БД (при необходимости).
+    Определение объекта сервиса хранилища:
+    Определение объекта сервиса записной книжки:
     */
     }
-        contactList = new ArrayList<>() {{
-            add(contactRight);
-        }};
-        dataAbsents = "Name0;12345";
-        dataWrong = "12345;Name0";
-        contactWrong = new PBContact("Non-existing", "00000");
-        dataExists = contactRight.getName() + ";" + contactRight.getPhone();
-
-        storage = new PhoneBookStorage(contactList);
-        pbService = new PhoneBookService(storage);
-    }
-
-    @Test
+    
     void testAddContactSuccess() {
-        String[] expected = dataAbsents.split(";");
-        pbService.add(dataAbsents);
-        PBContact newContact = storage.get(dataAbsents);
-        assertEquals(expected[0], newContact.getName());
-        assertEquals(expected[1], newContact.getPhone());
+        /*
+         Вызов процедуры добавления контакта у сервиса записной книжки;
+         Вызов процедуры получения контакта у сервиса хранилища;
+         Проверка соответствия добавленных данных;  
+         */
     }
-
-    @Test
+    
     void testAddContactFailContactExists() {
-        Exception errorAdd = assertThrows(IllegalStateException.class, () -> pbService.add(dataExists));
-        PBContact newContact = storage.get(dataAbsents);
-        assertThat(errorAdd).isInstanceOf(IllegalStateException.class).hasMessage("Contact exists");
-        assertNull(newContact);
+        /*
+        Получение размера структуры данных;
+        Вызов процедуры добавления контакта у сервиса записной книжки и получение сообщения об ошибке;
+        
+        Сверка сообщения об ошибке;
+        Проверка, что размер структуры данных не изменился;
+         */
+                
     }
-
-    @Test
+    
     void testAddContactFailWrongData() {
-        Exception errorAdd = assertThrows(IllegalArgumentException.class, () -> pbService.add(dataWrong));
-        PBContact newContact = storage.get(dataWrong);
-        assertThat(errorAdd).isInstanceOf(IllegalArgumentException.class).hasMessage("Wrong data");
-        assertNull(newContact);
+        /*
+        Вызов процедуры добавления контакта у сервиса записной книжки с заведомо неверными данными 
+            и получение сообщения об ошибке;
+        
+        Сверка сообщения об ошибке;
+        Проверка, что невалидные данные не внесены в структуру данных;
+         */
     }
-
-    @Test
+    
     void testDelContactSuccess() {
-        String actual = pbService.delete(contactRight);
-        String expected = "Contact deleted";
-        assertEquals(expected, actual);
-        storage.get(contactRight.getName() + ";" + contactRight.getPhone());
+        /*
+        Вызов процедуры удаления сервиса записной книжки и получение сообщения об успешном удалении;
+        Сверка сообщения об удалении;
+        
+        Вызов получения данных у сервиса хранилища со значениями удаленного контакта и получение 
+            сообщения об отсутствии;
+        Сверка сообщения об отсутствии;   
+        */
     }
-
-    @Test
+    
     void testDelContactFailContactNotFound() {
-        String expected = "Contact not found";
-        String actual = pbService.delete(contactWrong);
-        assertEquals(expected, actual);
+        /*
+        Вызов процедуры удаления сервиса записной книжки с заведомо отсутствующими данными 
+            и получение сообщения об ошибке поиска;
+        Сверка сообщения об ошибке поиска;
+        */
     }
-
-    @Test
+    
     void testEditContactSuccess() {
-        String newData = "Name1;9876543";
-        String expected = "Contact successfully updated";
-        String actual = pbService.edit(contactRight.getName() + ';' + contactRight.getPhone(), newData);
-        assertEquals(expected, actual);
-        PBContact updContact = storage.get(newData);
-        assertEquals(newData, updContact.getName() + ';' + updContact.getPhone());
+        /*
+        Вызов процедуры редактирования контакта и получение сообщения об успешном обновлении данных;
+        
+        Сверка сообщения об успешном обновлении;
+        Получение обновленного контакта через сервис хранилища;
+        Сверка обновленных данных;
+         */
     }
 
     @Test
