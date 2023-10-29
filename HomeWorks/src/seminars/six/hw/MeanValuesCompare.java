@@ -10,6 +10,7 @@ public class MeanValuesCompare<T> {
 
 
     public String compare(List<T> first, List<T> second) {
+        if (first.isEmpty() || second.isEmpty()) throw new IllegalArgumentException("Передан пустой список");
         double firstMean = getMeanOfList(first);
         double secondMean = getMeanOfList(second);
         double mark = firstMean - secondMean;

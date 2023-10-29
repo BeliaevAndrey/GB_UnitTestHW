@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MeanValuesCompareTest {
 
+
     MeanValuesCompare<Integer> meanIntegerValuesCompare;
     MeanValuesCompare<Double> meanDoubleValuesCompare;
     MeanValuesCompare<Long> meanLongValuesCompare;
@@ -132,6 +133,17 @@ class MeanValuesCompareTest {
         ArrayList<Double> second = new ArrayList<>(Arrays.asList(4D, 5D, 2D, 1D, 3D));
 
         assertThrows(NullPointerException.class, () -> meanDoubleValuesCompare.compare(first, second));
+    }
+
+    @Test
+    void testCompareEmptyListFail() {
+        String expected_message = "Передан пустой список";
+        ArrayList<Double> first = new ArrayList<>();
+        ArrayList<Double> second = new ArrayList<>(Arrays.asList(4D, 5D, 2D, 1D, 3D));
+
+        Exception error = assertThrows(
+                IllegalArgumentException.class, () -> meanValuesCompare.compare(first, second));
+        assertThat(error).hasMessage(expected_message);
     }
 
     @Test
