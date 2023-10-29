@@ -1,6 +1,6 @@
 package seminars.six.hw;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MeanValuesCompare<T> {
 
@@ -9,14 +9,14 @@ public class MeanValuesCompare<T> {
     private final String ANSWER_EQUALS = "Средние значения равны";
 
 
-    public String compare(ArrayList<T> first, ArrayList<T> second) {
+    public String compare(List<T> first, List<T> second) {
         double firstMean = getMeanOfList(first);
         double secondMean = getMeanOfList(second);
         double mark = firstMean - secondMean;
         return mark > 0 ? ANSWER_FIRST : mark < 0 ? ANSWER_SECOND : ANSWER_EQUALS;
     }
 
-    private double getMeanOfList(ArrayList<T> values) {
+    private double getMeanOfList(List<T> values) {
         double total = 0;
         for (T e : values) {
             if (e instanceof Double)
