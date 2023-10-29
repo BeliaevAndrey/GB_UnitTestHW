@@ -22,6 +22,7 @@ class MeanValuesCompareTest {
         ArrayList<Integer> first = new ArrayList<>(Arrays.asList(11, 12, 13, 14, 15));
         ArrayList<Integer> second = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
         String actual = meanValuesCompare.compare(first, second);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -30,6 +31,7 @@ class MeanValuesCompareTest {
         ArrayList<Integer> first = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
         ArrayList<Integer> second = new ArrayList<>(Arrays.asList(11, 12, 13, 14, 15));
         String actual = meanValuesCompare.compare(first, second);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -38,7 +40,7 @@ class MeanValuesCompareTest {
         ArrayList<Integer> first = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
         ArrayList<Integer> second = new ArrayList<>(Arrays.asList(4, 5, 2, 1, 3));
         String actual = meanValuesCompare.compare(first, second);
-
+        assertEquals(expected, actual);
     }
 
 }
